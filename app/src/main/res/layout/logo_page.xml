@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- App Logo -->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="HealthConnect Logo"
+        android:src="@drawable/logo" />
+
+    <!-- App Name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="HealthConnect"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- App Description -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="Welcome to HealthConnect, your health management companion."
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp" />
+
+    <!-- Continue to Login Button -->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="#32A852"
+        android:cornerRadius="10dp"
+        android:text="Continue to Login"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

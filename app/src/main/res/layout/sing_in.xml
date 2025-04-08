@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Access Account"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif-medium"/>
+
+        <!-- Subtitle -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Access your healthcare services easily"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="sans-serif" />
+
+        <!-- Email Address -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="#F5F5F5"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="#F5F5F5"
+            android:radius="10dp">
+
+
+            <EditText
+                android:id="@+id/editTextsing_inYouremailaddress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Your email address"
+                android:background="@android:color/transparent"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@android:color/black"
+                android:inputType="textEmailAddress"
+                android:fontFamily="sans-serif" />
+        </LinearLayout>
+
+        <!-- Password -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="#F5F5F5"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#F5F5F5"
+            android:radius="10dp">
+
+
+            <EditText
+                android:id="@+id/editTextsing_inEnteryourpassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter your password"
+                android:background="@android:color/transparent"
+                android:textColorHint="@android:color/darker_gray"
+                android:textColor="@android:color/black"
+                android:inputType="textPassword"
+                android:fontFamily="sans-serif"/>
+        </LinearLayout>
+
+        <!-- Forgot Password -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forget your password?"
+            android:textSize="14sp"
+            android:textColor="#32A852"
+            android:layout_gravity="end"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="sans-serif-medium" />
+
+        <!-- Log In Button -->
+        <Button
+            android:id="@+id/buttonLogIn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Log In"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#32A852"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:cornerRadius="10dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="sans-serif-medium" />
+
+        <!-- Sign Up Text -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Need to create an account? "
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/textViweSingUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Sign Up"
+                android:textColor="#32A852"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
