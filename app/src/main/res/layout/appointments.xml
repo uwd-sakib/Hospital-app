@@ -1,53 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".AppointmentsActivity">
 
+    <!-- Appointments Title -->
     <TextView
+        android:id="@+id/textViewAppointmentsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Appointments"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginBottom="16dp"/>
+        android:text="@string/appointments_title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:textColor="@color/black"
+        android:contentDescription="@string/appointments_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="16dp" />
 
+    <!-- Upcoming Appointments Section Title -->
     <TextView
+        android:id="@+id/textViewUpcomingAppointments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upcoming Appointments"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:layout_marginBottom="8dp"/>
+        android:text="@string/upcoming_appointments"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:textColor="@color/black"
+        android:contentDescription="@string/upcoming_appointments"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAppointmentsTitle"
+        android:layout_marginBottom="8dp" />
 
+    <!-- Upcoming Appointments RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/upcoming_appointments_recycler_view"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"/>
+        android:nestedScrollingEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUpcomingAppointments"
+        android:layout_marginBottom="16dp"
+        tools:listitem="@layout/item_appointment" />
 
+    <!-- Past Appointments Section Title -->
     <TextView
+        android:id="@+id/textViewPastAppointments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Past Appointments"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:layout_marginBottom="8dp"/>
+        android:text="@string/past_appointments"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:textColor="@color/black"
+        android:contentDescription="@string/past_appointments"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upcoming_appointments_recycler_view"
+        android:layout_marginBottom="8dp" />
 
+    <!-- Past Appointments RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/past_appointments_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:nestedScrollingEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/book_appointment_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPastAppointments"
+        tools:listitem="@layout/item_appointment" />
 
-    <Button
+    <!-- Book Appointment Button -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/book_appointment_button"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Book New Appointment"
         android:layout_marginTop="16dp"
-        android:backgroundTint="#4CAF50"
-        android:textColor="#FFFFFF"/>
+        android:layout_marginBottom="16dp"
+        android:minHeight="48dp"
+        android:text="@string/book_new_appointment"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/button_green"
+        app:cornerRadius="8dp"
+        android:contentDescription="@string/book_new_appointment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

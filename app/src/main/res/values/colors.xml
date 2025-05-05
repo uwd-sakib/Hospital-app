@@ -35,4 +35,5 @@
     <color name="yellow_medium">#FFFF00</color>
     <color name="yellow_dark">#FFD700</color>
     <color name="gold">#FFD700</color>
+    <color name="button_green">#4CAF50</color>
 </resources>

@@ -8,6 +8,7 @@
     android:padding="16dp"
     tools:context=".AdminLoginActivity">
 
+    <!-- Hospital Name Title -->
     <TextView
         android:id="@+id/textViewHospitalName"
         android:layout_width="wrap_content"
@@ -15,50 +16,63 @@
         android:fontFamily="@font/amarante"
         android:text="@string/HospitalName"
         android:textColor="@color/font"
-        android:textSize="35sp"
+        android:textSize="34sp"
         android:textStyle="bold"
+        android:contentDescription="@string/HospitalName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp" />
 
+    <!-- Admin Type Prompt -->
     <TextView
         android:id="@+id/textViewAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="@font/amarante"
         android:text="@string/select_admin_type"
         android:textColor="@color/font"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:contentDescription="@string/select_admin_type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHospitalName" />
 
-    <Button
+    <!-- Super Admin Button -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonSuperAdmin"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="56dp"
-        android:backgroundTint="@color/button"
+        android:layout_height="56dp"
+        android:layout_marginTop="48dp"
         android:text="@string/super_admin"
         android:textColor="@color/black"
         android:fontFamily="@font/amarante"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+        app:backgroundTint="@color/button"
+        android:contentDescription="@string/super_admin"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAdmin" />
 
-    <Button
+    <!-- Doctor Button -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonDoctor"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/button"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
         android:text="@string/doctor"
         android:textColor="@color/black"
         android:fontFamily="@font/amarante"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+        app:backgroundTint="@color/button"
+        android:contentDescription="@string/doctor"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSuperAdmin" />
 

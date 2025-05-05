@@ -1,267 +1,382 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/white"
     android:padding="16dp"
-    android:background="@color/white">
-
+    tools:context=".MainPageActivity">
 
     <!-- Main Page Title -->
     <TextView
         android:id="@+id/mainPageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Main Page"
-        android:textSize="24sp"
+        android:text="@string/main_page_title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="16dp" />
+        android:contentDescription="@string/main_page_title"
+        android:importantForAccessibility="yes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="24dp" />
 
     <!-- Search Bar -->
-    <EditText
-        android:id="@+id/searchService"
-        android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchServiceContainer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Search for service, doctor..."
-        android:padding="12dp"
-        android:background="@drawable/search_background"
-        android:textColorHint="@color/gray"
-        android:textSize="16sp"
-        android:paddingBottom="16dp" />
+        android:hint="@string/search_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainPageTitle"
+        android:layout_marginBottom="24dp">
 
-    <!-- Service Options -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="16dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_background"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:contentDescription="@string/search_hint"
+            android:importantForAccessibility="yes" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Doctors -->
+    <!-- Service Options in ScrollView -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/serviceOptionsScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchServiceContainer">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical"
+            android:paddingTop="8dp">
 
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <!-- Doctors -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/doctorsCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/doctors_title"
+                android:importantForAccessibility="yes">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Doctors"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Find specialists"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_medium" />
-            </LinearLayout>
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_doctors"
+                        android:contentDescription="@string/doctors_icon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp" />
 
-        <!-- Appointments -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/doctors_title"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:textColor="@color/black" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/doctors_description"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                            android:textColor="@color/gray_medium" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <!-- Appointments -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/appointmentsCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/appointments_title"
+                android:importantForAccessibility="yes">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Appointments"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Manage your visits"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_medium" />
-            </LinearLayout>
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_appointments"
+                        android:contentDescription="@string/appointments_icon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp" />
 
-        <!-- Pharmacy -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/appointments_title"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:textColor="@color/black" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/appointments_description"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                            android:textColor="@color/gray_medium" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <!-- Pharmacy -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/pharmacyCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/pharmacy_title"
+                android:importantForAccessibility="yes">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pharmacy"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Order medications"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_medium" />
-            </LinearLayout>
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_pharmacy"
+                        android:contentDescription="@string/pharmacy_icon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp" />
 
-        <!-- Lab Tests -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pharmacy_title"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:textColor="@color/black" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pharmacy_description"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                            android:textColor="@color/gray_medium" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <!-- Lab Tests -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/labTestsCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/lab_tests_title"
+                android:importantForAccessibility="yes">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lab Tests"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Book lab tests"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_medium" />
-            </LinearLayout>
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_lab_tests"
+                        android:contentDescription="@string/lab_tests_icon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp" />
 
-        <!-- Health Tips -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lab_tests_title"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:textColor="@color/black" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lab_tests_description"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                            android:textColor="@color/gray_medium" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <!-- Health Tips -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/healthTipsCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/health_tips_title"
+                android:importantForAccessibility="yes">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Health Tips"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Stay healthy"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_medium" />
-            </LinearLayout>
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_health_tips"
+                        android:contentDescription="@string/health_tips_icon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp" />
 
-        <!-- Ambulance -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/health_tips_title"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:textColor="@color/black" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/health_tips_description"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                            android:textColor="@color/gray_medium" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <!-- Ambulance -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ambulanceCard"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/ambulance_title"
+                android:importantForAccessibility="yes">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ambulance"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Manage cars"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray_medium" />
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_ambulance"
+                        android:contentDescription="@string/ambulance_icon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ambulance_title"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ambulance_description"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                            android:textColor="@color/gray_medium" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <!-- Bottom Navigation -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="16dp"
-        android:gravity="center_horizontal">
+        android:background="?android:attr/windowBackground"
+        app:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_main"
+        app:labelVisibilityMode="labeled" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginRight="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Doctors"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginRight="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginRight="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Health Services"
-            android:textSize="16sp"
-            android:textColor="@color/black" />
-    </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
